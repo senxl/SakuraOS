@@ -1,9 +1,12 @@
 #ifndef SAKURA_TYPES_H
 #define SAKURA_TYPES_H
 
-#define EOF -1 // END OF FILE
+// END OF FILE
+#define EOF -1
+// 空指针
+#define NULL ((void *)0)
 
-#define NULL ((void *)0) // 空指针
+#define EOS '\0'
 
 #define bool _Bool
 #define true 1
@@ -12,7 +15,7 @@
 // 用于定义特殊的结构体
 #define _packed __attribute__((packed))
 
-//typedef unsigned int size_t;
+typedef unsigned int size_t;
 
 typedef char        int8;
 typedef short       int16;
