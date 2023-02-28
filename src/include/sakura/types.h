@@ -1,5 +1,5 @@
-#ifndef OS_TYPES_H
-#define OS_TYPES_H
+#ifndef SAKURA_TYPES_H
+#define SAKURA_TYPES_H
 
 #define EOF -1 // END OF FILE
 

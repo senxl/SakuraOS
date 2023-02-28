@@ -17,3 +17,7 @@ CFLAGS:=$(strip ${CFLAGS})
 .PHONY:hello.s
 hello.s: hello.c
 	gcc $(CFLAGS) -S $< -o $@
+
+.PHONY:test.s
+test.s: test.c
+	gcc $(CFLAGS) -S $< -o $@

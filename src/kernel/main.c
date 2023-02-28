@@ -1,4 +1,4 @@
-#include <os/os.h>
+#include <sakura/os.h>
 
 int magic = OS_MAGIC;
 char message[] = "Hello os kernel";// .data

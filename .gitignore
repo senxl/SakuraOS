@@ -12,5 +12,6 @@
 *.log
 
 build
+onix
 bochs/src
 bochs/pkg
