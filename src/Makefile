@@ -20,16 +20,17 @@ $(BUILD)/boot/%.bin: $(SRC)/boot/%.asm
 	$(shell mkdir -p $(dir $@))
 	nasm -f bin $< -o $@
 
-$(BUILD)/kernel/%.o: $(SRC)/kernel/%.asm
+$(BUILD)/%.o: $(SRC)/%.asm
 	$(shell mkdir -p $(dir $@))
 	nasm -f elf32 $(DEBUG) $< -o $@
 
-$(BUILD)/kernel/%.o: $(SRC)/kernel/%.c
+$(BUILD)/%.o: $(SRC)/%.c
 	$(shell mkdir -p $(dir $@))
 	gcc $(CFLAGS) $(DEBUG) $(INCLUDE) -c $< -o $@
 	
 $(BUILD)/kernel.bin: \
 	$(BUILD)/kernel/start.o \
+	$(BUILD)/kernel/io.o \
 	$(BUILD)/kernel/main.o \
 
 	$(shell mkdir -p $(dir $@))
@@ -69,7 +70,14 @@ bochsg: $(BUILD)/master.img
 
 .PHONY: qemu
 qemu: $(BUILD)/master.img
-	qemu-system-i386.exe -m 32M -boot c -hda $<
+	qemu-system-i386 \
+	 -m 32M -boot c -hda $<
+
+.PHONY: qemug
+qemug: $(BUILD)/master.img
+	qemu-system-i386 -s -S \
+	 -m 32M -boot c -hda $<
+
 
 $(BUILD)/master.vmdk: $(BUILD)/master.img
 	qemu-img.exe convert -O vmdk $< $@
